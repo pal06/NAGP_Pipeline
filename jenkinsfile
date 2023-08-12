@@ -29,7 +29,7 @@ environment {
         }
 	stage('Static Analysis') {
 	steps{
-	  withSonarQubeEnv('sonar-jenkins') 
+	  withSonarQubeEnv() 
 	    {
 	     bat 'mvn sonar:sonar'
 	     echo 'Static Analysis Completed' 
