@@ -31,7 +31,7 @@ environment {
 			{  
 	  withSonarQubeEnv('sonar-jenkins') 
 	    {
-	     bat 'mvn sonar:sonar
+	     bat 'mvn sonar:sonar'
 	     echo 'Static Analysis Completed' 
 	     }
 	   }
