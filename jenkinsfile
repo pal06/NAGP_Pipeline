@@ -34,7 +34,7 @@ environment {
 	     bat 'mvn sonar:sonar
 	     echo 'Static Analysis Completed' 
 	     }
-	   
+	   }
 	stage("Quality Gate"){
 	  timeout(time: 1, unit: 'HOURS') 
 	  {
@@ -46,9 +46,7 @@ environment {
 	  }         
 	      echo 'Quality Gate Passed' 
 	}
-			
-		
-    }
+}
     
     post {
         always {
