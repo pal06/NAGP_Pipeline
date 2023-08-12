@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+	triggers {
+        cron('0 20 * * *') // Run every night at 8 PM
+    }
+environment {
+        JAVA_HOME = 'C:/Users/palvika/jdk-17'
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
+    }
+	tools{
+		maven 'mvn_home'
+	}
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout your source code from GitHub
+                bat 'git checkout'
+            }
+        }
+        
+        stage('Build and Test') {
+            steps {
+                script {
+		// execute the build
+		bat 'mvn clean test'
+                }
+            }
+        }
+		
+		
+    }
+    
+    post {
+        always {
+            // Archive the generated test reports
+            archiveArtifacts artifacts: 'NAGP_DevOps_Assignment/palvika/project/target/surefire-reports/*.xml', allowEmptyArchive: true
+            
+           
+        }
+    }
+}
